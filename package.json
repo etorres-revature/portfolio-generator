@@ -1,0 +1,28 @@
+{
+  "name": "portfolio-generator",
+  "version": "1.0.0",
+  "description": "Small app to generate HTML from command line prompts",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/etorres-revature/portfolio-generator.git"
+  },
+  "keywords": [
+    "node",
+    "javascript",
+    "html",
+    "inquirer"
+  ],
+  "author": "Eric D. Torres",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/etorres-revature/portfolio-generator/issues"
+  },
+  "homepage": "https://github.com/etorres-revature/portfolio-generator#readme",
+  "dependencies": {
+    "inquirer": "^8.1.5"
+  }
+}
