@@ -1,3 +1,6 @@
+const fs = require("fs");
+const outputdir = __dirname + "/html";
+
 const profileDataArgs = process.argv.slice(2);
 const [name, github] = profileDataArgs;
 
@@ -34,5 +37,8 @@ const generatePage = (userName, githubName) => {
   </html>`;
 };
 
-console.log(name, github)
-console.log(generatePage(name, github));
+fs.writeFile(outputdir + "/index.html", generatePage(name, github), err => {
+    if (err) throw err;
+
+    console.log(`${name}'s portfolio is complete!! Check out the index.html file in the html folder to see what was output.`)
+})
