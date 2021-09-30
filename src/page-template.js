@@ -1,11 +1,6 @@
 module.exports = (templateData) => {
-  const { projects, about } = templateData;
+  const { projects, about, ...header } = templateData;
 
-  const header = {
-    name: templateData.name,
-    github: templateData.github,
-  };
-  
   return `
     <!DOCTYPE html>
     <html lang="en">
