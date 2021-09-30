@@ -75,7 +75,10 @@ const promptProject = () => {
   ]);
 };
 
-promptUser().then((answers) => console.log(answers));
+promptUser()
+  .then((answers) => console.log(answers))
+  .then(promptProject)
+  .then((projectAnswers) => console.log(projectAnswers));
 
 // const html = generatePage(name, github)
 
