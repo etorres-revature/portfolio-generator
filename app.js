@@ -1,7 +1,7 @@
 const fs = require("fs");
 const inquirer = require("inquirer");
 const generatePage = require("./src/page-template");
-const outputdir = __dirname + "/html";
+const outputdir = __dirname + "/dist";
 
 const promptUser = () => {
   return inquirer.prompt([
@@ -140,11 +140,23 @@ promptUser()
   .then((portfolioData) => {
     const html = generatePage(portfolioData);
 
+    if(!fs.existsSync(outputdir)) {
+      fs.mkdirSync(outputdir)
+    }
+
     fs.writeFile(outputdir + "/index.html", html, (err) => {
       if (err) throw err;
 
       console.log(
         `${portfolioData.name}'s portfolio is complete!! Check out the index.html file in the html folder to see what was output.`
       );
+
+      fs.copyFile('./src/style.css', './dist/style.css', err => {
+        if (err) {
+          console.log(err);
+          return;
+        }
+        console.log('Style sheet copied successfully!');
+      });
     });
   });
