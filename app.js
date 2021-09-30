@@ -24,60 +24,67 @@ const promptUser = () => {
 };
 
 const promptProject = (portfolioData) => {
-  if (!portfolioData.projects){
-      portfolioDataData.projects = [];
-  };
+  if (!portfolioData.projects) {
+    portfolioDataData.projects = [];
+  }
   console.log(`
     =================
     Add a New Project
     =================
 `);
-  return inquirer.prompt([
-    {
-      type: "input",
-      name: "projectName",
-      message: "What is the name of your project?",
-    },
-    {
-      type: "input",
-      name: "projectDescription",
-      message: "Provide a description of this project (REQUIRED).",
-    },
-    {
-      type: "checkbox",
-      name: "codingLanguage",
-      message: "What programming language did you use to build this project?",
-      choices: [
-        "JavaScript",
-        "HTML",
-        "CSS",
-        "ES6",
-        "jQuery",
-        "Bootstrap",
-        "Node",
-      ],
-    },
-    {
-      type: "input",
-      name: "projectLink",
-      message:
-        "Enter the link to the GitHub repository for this project (REQUIRED). ",
-    },
-    {
-      type: "confirm",
-      name: "feature",
-      message: "Would you like to feature this project repository?",
-      default: false,
-    },
-    {
-      type: "confirm",
-      name: "confirmAddProject",
-      message: "Would you like to enter another project?",
-      default: false,
-    },
-  ]).then(projectData => {
-      portfolioData.projects.push(projectData)
-  })
+  return inquirer
+    .prompt([
+      {
+        type: "input",
+        name: "projectName",
+        message: "What is the name of your project?",
+      },
+      {
+        type: "input",
+        name: "projectDescription",
+        message: "Provide a description of this project (REQUIRED).",
+      },
+      {
+        type: "checkbox",
+        name: "codingLanguage",
+        message: "What programming language did you use to build this project?",
+        choices: [
+          "JavaScript",
+          "HTML",
+          "CSS",
+          "ES6",
+          "jQuery",
+          "Bootstrap",
+          "Node",
+        ],
+      },
+      {
+        type: "input",
+        name: "projectLink",
+        message:
+          "Enter the link to the GitHub repository for this project (REQUIRED). ",
+      },
+      {
+        type: "confirm",
+        name: "feature",
+        message: "Would you like to feature this project repository?",
+        default: false,
+      },
+      {
+        type: "confirm",
+        name: "confirmAddProject",
+        message: "Would you like to enter another project?",
+        default: false,
+      },
+    ])
+    .then((projectData) => {
+      portfolioData.projects.push(projectData);
+      if (projectData.confirmAddProject) {
+        return promptProject(portfolioData);
+      } else {
+        return portfolioData;
+      }
+    });
 };
 
 promptUser()
