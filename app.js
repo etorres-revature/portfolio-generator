@@ -87,6 +87,16 @@ const promptProject = (portfolioData) => {
         name: "projectLink",
         message:
           "Enter the link to the GitHub repository for this project (REQUIRED). ",
+        validate: (projectLink) => {
+          if (projectLink) {
+            return true;
+          } else {
+            console.log(
+              "Please enter the link to the GitHub repository for this project ..."
+            );
+            return false;
+          }
+        },
       },
       {
         type: "confirm",
