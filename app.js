@@ -144,7 +144,7 @@ promptUser()
       if (err) throw err;
 
       console.log(
-        `${name}'s portfolio is complete!! Check out the index.html file in the html folder to see what was output.`
+        `${portfolioData.name}'s portfolio is complete!! Check out the index.html file in the html folder to see what was output.`
       );
     });
   });

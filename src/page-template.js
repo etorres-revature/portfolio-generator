@@ -1,11 +1,11 @@
 // create the "About" section
-const generateAbout = (aboutText) => {
+const generateAbout = (aboutText, name) => {
   if (!aboutText) {
     return "";
   } else {
     return `
       <section class="my-3" id="about">
-        <h2 class="text-dark bg-primary p-2 display-inline-block">About ${header.name}</h2>
+        <h2 class="text-dark bg-primary p-2 display-inline-block">About ${name}</h2>
         <p>${aboutText}</p>
       </section>
         `;
@@ -70,7 +70,7 @@ module.exports = (templateData) => {
       </div>
     </header>
     <main class="container my-5">
-          ${generateAbout(about)}
+          ${generateAbout(about, header.name)}
           ${generateProjects(projects)}
     </main>
     <footer class="container text-center py-3">
