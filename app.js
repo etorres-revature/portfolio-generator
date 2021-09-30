@@ -84,7 +84,7 @@ const promptProject = (portfolioData) => {
       },
       {
         type: "checkbox",
-        name: "codingLanguage",
+        name: "codingLanguages",
         message: "What programming language did you use to build this project?",
         choices: [
           "JavaScript",

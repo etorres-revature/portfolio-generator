@@ -13,11 +13,27 @@ const generateAbout = (aboutText) => {
 };
 
 const generateProjects = (projectsArr) => {
+  const projectHTMLArr = projectsArr.map(
+    ({ projectName, projectDescription, codingLanguages, projectLink }) => {
+      return `
+        <div class="col-12 col-md-6 mb-2 bg-dark text-light p-3 flex-column:>
+          <h3 class="portfolio-item-title text-light"> ${projectName}</h3>
+          <h5 class="portfolio-languages">
+            BUILT USING: 
+            ${codingLanguages.join(", ")}
+          </h5>
+          <p>${projectDescription}</p>
+          <a href="${projectLink}" class="btn mt-auto"><i class="fab fa-github mr-2"></i>View Project on GitHub</a>
+        </div>
+        `;
+    }
+  );
+
   return `
     <section class="my-3" id="portfolio">
       <h2 class="text-dark bg-primary p-2 display-inline-block">Projects</h2>
       <div class="flex-row justify-space-between">
-        <!-- dynamically insert project HTML here -->
+        ${projectHTMLArr.join("")}
       </div>
     </section>
     `;
