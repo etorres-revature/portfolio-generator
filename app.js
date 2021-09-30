@@ -1,6 +1,7 @@
 const fs = require("fs");
 const inquirer = require("inquirer");
 const generatePage = require("./src/page-template");
+const { writeFile, copyFile } = require("./utils/generate-site");
 const outputdir = __dirname + "/dist";
 
 const promptUser = () => {
@@ -138,25 +139,19 @@ const promptProject = (portfolioData) => {
 promptUser()
   .then(promptProject)
   .then((portfolioData) => {
-    const html = generatePage(portfolioData);
-
-    if(!fs.existsSync(outputdir)) {
-      fs.mkdirSync(outputdir)
+    return generatePage(portfolioData);
+  })
+  .then((pageHTML) => {
+    if (!fs.existsSync(outputdir)) {
+      fs.mkdirSync(outputdir);
     }
-
-    fs.writeFile(outputdir + "/index.html", html, (err) => {
-      if (err) throw err;
-
-      console.log(
-        `${portfolioData.name}'s portfolio is complete!! Check out the index.html file in the html folder to see what was output.`
-      );
-
-      fs.copyFile('./src/style.css', './dist/style.css', err => {
-        if (err) {
-          console.log(err);
-          return;
-        }
-        console.log('Style sheet copied successfully!');
-      });
-    });
-  });
+    return writeFile(pageHTML, outputdir);
+  })
+  .then((writeFileResponse) => {
+    console.log(writeFileResponse);
+    return copyFile(outputdir);
+  })
+  .then((copyFileResponse) => {
+    console.log(copyFileResponse);
+  })
+  .catch((err) => console.log(err));
