@@ -25,7 +25,7 @@ const promptUser = () => {
 
 const promptProject = (portfolioData) => {
   if (!portfolioData.projects) {
-    portfolioDataData.projects = [];
+    portfolioData.projects = [];
   }
   console.log(`
     =================
@@ -88,9 +88,8 @@ const promptProject = (portfolioData) => {
 };
 
 promptUser()
-  .then((answers) => console.log(answers))
   .then(promptProject)
-  .then((projectAnswers) => console.log(projectAnswers));
+  .then((portfolioData) => console.log(portfolioData));
 
 // const html = generatePage(name, github)
 
