@@ -12,6 +12,17 @@ const generateAbout = (aboutText) => {
   }
 };
 
+const generateProjects = (projectsArr) => {
+  return `
+    <section class="my-3" id="portfolio">
+      <h2 class="text-dark bg-primary p-2 display-inline-block">Projects</h2>
+      <div class="flex-row justify-space-between">
+        <!-- dynamically insert project HTML here -->
+      </div>
+    </section>
+    `;
+};
+
 module.exports = (templateData) => {
   // desctructure page data by section
   const { projects, about, ...header } = templateData;
