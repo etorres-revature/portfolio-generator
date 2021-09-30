@@ -1,7 +1,7 @@
-// const fs = require("fs");
+const fs = require("fs");
 const inquirer = require("inquirer");
-// const generatePage = require("./src/page-template")
-// const outputdir = __dirname + "/html";
+const generatePage = require("./src/page-template");
+const outputdir = __dirname + "/html";
 
 const promptUser = () => {
   return inquirer.prompt([
@@ -137,12 +137,14 @@ const promptProject = (portfolioData) => {
 
 promptUser()
   .then(promptProject)
-  .then((portfolioData) => console.log(portfolioData));
+  .then((portfolioData) => {
+    const html = generatePage(portfolioData);
 
-// const html = generatePage(name, github)
+    fs.writeFile(outputdir + "/index.html", html, (err) => {
+      if (err) throw err;
 
-// fs.writeFile(outputdir + "/index.html", html, err => {
-//     if (err) throw err;
-
-//     console.log(`${name}'s portfolio is complete!! Check out the index.html file in the html folder to see what was output.`)
-// })
+      console.log(
+        `${name}'s portfolio is complete!! Check out the index.html file in the html folder to see what was output.`
+      );
+    });
+  });
