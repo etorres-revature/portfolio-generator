@@ -23,7 +23,10 @@ const promptUser = () => {
   ]);
 };
 
-const promptProject = () => {
+const promptProject = (portfolioData) => {
+  if (!portfolioData.projects){
+      portfolioDataData.projects = [];
+  };
   console.log(`
     =================
     Add a New Project
