@@ -1,4 +1,5 @@
 module.exports = templateData => {
+    const {projects, about} = templateData;
     return `
     <!DOCTYPE html>
     <html lang="en">
