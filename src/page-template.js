@@ -13,7 +13,41 @@ const generateAbout = (aboutText, name) => {
 };
 
 const generateProjects = (projectsArr) => {
-  const projectHTMLArr = projectsArr.map(
+  // get array of featured projects
+  const featuredProjects = projectsArr.filter((project) => {
+    if (project.feature) {
+      return true;
+    } else {
+      return false;
+    }
+  });
+
+  // get array of non-featured projects
+  const nonFeaturedProjects = projectsArr.filter((project) => {
+    if (!project.feature) {
+      return true;
+    } else {
+      return false;
+    }
+  });
+
+  const featuredProjectsHTMLArr = featuredProjects.map(
+    ({ projectName, projectDescription, codingLanguages, projectLink }) => {
+      return `
+        <div class="col-12 mb-2 bg-dark text-light p-3 flex-column:>
+          <h3 class="portfolio-item-title text-light"> ${projectName}</h3>
+          <h5 class="portfolio-languages">
+            BUILT USING: 
+            ${codingLanguages.join(", ")}
+          </h5>
+          <p>${projectDescription}</p>
+          <a href="${projectLink}" class="btn mt-auto"><i class="fab fa-github mr-2"></i>View Project on GitHub</a>
+        </div>
+        `;
+    }
+  );
+
+  const nonFeaturedProjectsHTMLArr = nonFeaturedProjects.map(
     ({ projectName, projectDescription, codingLanguages, projectLink }) => {
       return `
         <div class="col-12 col-md-6 mb-2 bg-dark text-light p-3 flex-column:>
@@ -33,7 +67,8 @@ const generateProjects = (projectsArr) => {
     <section class="my-3" id="portfolio">
       <h2 class="text-dark bg-primary p-2 display-inline-block">Projects</h2>
       <div class="flex-row justify-space-between">
-        ${projectHTMLArr.join("")}
+        ${featuredProjectsHTMLArr.join("")}
+        ${nonFeaturedProjectsHTMLArr.join("")}
       </div>
     </section>
     `;
