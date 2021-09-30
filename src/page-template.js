@@ -55,6 +55,7 @@ module.exports = (templateData) => {
     </header>
     <main class="container my-5">
           ${generateAbout(about)}
+          ${generateProjects(projects)}
     </main>
     <footer class="container text-center py-3">
       <h3 class="text-dark">&copy; ${new Date().getFullYear()} by ${
